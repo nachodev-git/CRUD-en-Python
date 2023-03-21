@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>decorador &mdash; documentación de MiProyecto - 0.0.1</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> MiProyecto
+          </a>
+              <div class="version">
+                0.0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../controlador.html">controlador module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../decorador.html">decorador module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modelo.html">modelo module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../observador.html">observador module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vista.html">vista module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MiProyecto</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Código de módulo</a> &raquo;</li>
+      <li>decorador</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Código fuente para decorador</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">dirname</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">abspath</span>
+    
+
+<div class="viewcode-block" id="get_logger"><a class="viewcode-back" href="../decorador.html#decorador.get_logger">[documentos]</a><span class="k">def</span> <span class="nf">get_logger</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="nf">interno</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">ruta</span> <span class="o">=</span> <span class="n">dirname</span><span class="p">(</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+        <span class="n">execute</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">log</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">ruta</span><span class="p">,</span> <span class="s2">&quot;log_movimientos.txt&quot;</span><span class="p">)</span>
+        <span class="n">archivo</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">log</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
+        <span class="n">fecha_y_hora</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+        <span class="n">operacion</span> <span class="o">=</span> <span class="n">fn</span><span class="o">.</span><span class="vm">__name__</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">operacion</span> <span class="o">==</span> <span class="s1">&#39;alta&#39;</span><span class="p">:</span>
+            <span class="n">valores</span> <span class="o">=</span> <span class="s1">&#39;cuilcuit: &quot;</span><span class="si">{0}</span><span class="s1">&quot; - razonsocial: &quot;</span><span class="si">{1}</span><span class="s1">&quot; - direccion: &quot;</span><span class="si">{2}</span><span class="s1">&quot; - telefono: &quot;</span><span class="si">{3}</span><span class="s1">&quot; - mail: &quot;</span><span class="si">{4}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                <span class="n">args</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                <span class="n">args</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+                <span class="n">args</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+                <span class="n">args</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">operacion</span> <span class="o">==</span> <span class="s1">&#39;baja&#39;</span><span class="p">:</span>
+            <span class="n">valores</span> <span class="o">=</span> <span class="s1">&#39;Id: &quot;</span><span class="si">{0}</span><span class="s1">&quot;&#39;</span> <span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="p">)</span>      
+        <span class="k">elif</span> <span class="n">operacion</span> <span class="o">==</span> <span class="s1">&#39;modificar&#39;</span><span class="p">:</span>
+            <span class="n">valores</span> <span class="o">=</span> <span class="s1">&#39;cuilcuit: &quot;</span><span class="si">{0}</span><span class="s1">&quot; - razonsocial: &quot;</span><span class="si">{1}</span><span class="s1">&quot; - direccion: &quot;</span><span class="si">{2}</span><span class="s1">&quot; - telefono: &quot;</span><span class="si">{3}</span><span class="s1">&quot; - mail: &quot;</span><span class="si">{4}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                <span class="n">args</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                <span class="n">args</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+                <span class="n">args</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+                <span class="n">args</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>                    
+            <span class="p">)</span>   
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">valores</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">-</span><span class="si">{1}</span><span class="s2">-</span><span class="si">{2}</span><span class="s2"> </span><span class="si">{3}</span><span class="s2"> | </span><span class="si">{4}</span><span class="s2"> | </span><span class="si">{5}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">fecha_y_hora</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y&#39;</span><span class="p">),</span>
+            <span class="n">fecha_y_hora</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%m&#39;</span><span class="p">),</span>
+            <span class="n">fecha_y_hora</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">),</span>
+            <span class="n">fecha_y_hora</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%X</span><span class="s1">&#39;</span><span class="p">),</span>
+            <span class="n">operacion</span><span class="p">,</span>
+            <span class="n">valores</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">79</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">msg</span><span class="p">,</span> <span class="n">file</span> <span class="o">=</span> <span class="n">archivo</span><span class="p">)</span>    
+    
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Registro Ejecutado (</span><span class="si">{0}</span><span class="s1">): </span><span class="si">{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fn</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">fecha_y_hora</span><span class="p">))</span>
+        
+        <span class="k">return</span> <span class="n">execute</span>
+         
+    <span class="k">return</span> <span class="n">interno</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2022, Aires Pampeanos.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

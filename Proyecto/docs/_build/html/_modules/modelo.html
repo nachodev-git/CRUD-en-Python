@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>modelo &mdash; documentación de MiProyecto - 0.0.1</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> MiProyecto
+          </a>
+              <div class="version">
+                0.0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../controlador.html">controlador module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../decorador.html">decorador module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modelo.html">modelo module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../observador.html">observador module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vista.html">vista module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MiProyecto</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Código de módulo</a> &raquo;</li>
+      <li>modelo</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Código fuente para modelo</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">sqlite3</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">messagebox</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">StringVar</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">decorador</span> <span class="kn">import</span> <span class="n">get_logger</span>
+<span class="kn">from</span> <span class="nn">observador</span> <span class="kn">import</span> <span class="n">Observer</span>
+
+<span class="n">cccli</span> <span class="o">=</span> <span class="n">StringVar</span>
+<span class="n">rzcli</span> <span class="o">=</span> <span class="n">StringVar</span>
+<span class="n">dircli</span> <span class="o">=</span> <span class="n">StringVar</span>
+<span class="n">telcli</span> <span class="o">=</span> <span class="n">StringVar</span>
+<span class="n">mailcli</span> <span class="o">=</span> <span class="n">StringVar</span>
+
+
+<div class="viewcode-block" id="Crud"><a class="viewcode-back" href="../modelo.html#modelo.Crud">[documentos]</a><span class="k">class</span> <span class="nc">Crud</span><span class="p">(</span><span class="n">Observer</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">pass</span>
+    
+<div class="viewcode-block" id="Crud.crear_base"><a class="viewcode-back" href="../modelo.html#modelo.Crud.crear_base">[documentos]</a>    <span class="k">def</span> <span class="nf">crear_base</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">conexion</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;bd1.db&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">conexion</span></div>
+
+<div class="viewcode-block" id="Crud.crear_tabla"><a class="viewcode-back" href="../modelo.html#modelo.Crud.crear_tabla">[documentos]</a>    <span class="k">def</span> <span class="nf">crear_tabla</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">conexion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">crear_base</span><span class="p">()</span>
+        <span class="n">micursor</span> <span class="o">=</span> <span class="n">conexion</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">sqltabla</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;CREATE TABLE IF NOT EXISTS clientes(id INTEGER PRIMARY KEY AUTOINCREMENT,</span>
+<span class="s2">                cuilcuit VARCHAR NOT NULL,</span>
+<span class="s2">                razonsocial TEXT NOT NULL,</span>
+<span class="s2">                direccion TEXT NOT NULL,</span>
+<span class="s2">                telefono TEXT NOT NULL,</span>
+<span class="s2">                mail TEXT NOT NULL)&quot;&quot;&quot;</span>
+        <span class="n">micursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sqltabla</span><span class="p">)</span>
+        <span class="n">conexion</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span></div>
+
+    <span class="c1">################### Métodos CRUD ####################</span>
+    <span class="nd">@get_logger</span>
+    <span class="k">def</span> <span class="nf">alta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cuilcuit</span><span class="p">,</span> <span class="n">razonsocial</span><span class="p">,</span> <span class="n">direccion</span><span class="p">,</span> <span class="n">telefono</span><span class="p">,</span> <span class="n">mail</span><span class="p">,</span> <span class="n">tree</span><span class="p">):</span>
+        <span class="n">conexion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">crear_base</span><span class="p">()</span>
+        <span class="n">micursor</span> <span class="o">=</span> <span class="n">conexion</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">cuilcuit</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span>
+            <span class="n">razonsocial</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span>
+            <span class="n">direccion</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span>
+            <span class="n">telefono</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span>
+            <span class="n">mail</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span>
+        <span class="p">)</span>
+        <span class="n">sqlinsertar</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO clientes(cuilcuit, razonsocial, direccion, telefono, mail) VALUES(?, ?, ?, ?, ?)&quot;</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">cuilcuit</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span>
+            <span class="ow">or</span> <span class="n">razonsocial</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span>
+            <span class="ow">or</span> <span class="n">direccion</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span>
+            <span class="ow">or</span> <span class="n">telefono</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span>
+            <span class="ow">or</span> <span class="n">mail</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span>
+        <span class="p">):</span>
+
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="s2">&quot;Por favor ingrese datos correctamente&quot;</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="n">cadena</span> <span class="o">=</span> <span class="n">cuilcuit</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+            <span class="n">patron</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;\d[0-9]&quot;</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">patron</span><span class="p">,</span> <span class="n">cadena</span><span class="p">):</span>
+                <span class="n">micursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sqlinsertar</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+                <span class="n">conexion</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+                <span class="n">conexion</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;alta&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="s2">&quot;Por favor ingrese datos correctamente&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">actualizar_treeview</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">notificar</span><span class="p">(</span><span class="n">cuilcuit</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">razonsocial</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">direccion</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">telefono</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">mail</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+    
+    <span class="nd">@get_logger</span>
+    <span class="k">def</span> <span class="nf">consultar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM clientes ORDER BY id ASC&quot;</span>
+        <span class="n">conexion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">crear_base</span><span class="p">()</span>
+        <span class="n">micursor</span> <span class="o">=</span> <span class="n">conexion</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">datos</span> <span class="o">=</span> <span class="n">micursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+        <span class="n">resultado</span> <span class="o">=</span> <span class="n">datos</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">fila</span> <span class="ow">in</span> <span class="n">resultado</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">fila</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">resultado</span><span class="p">)</span>
+    
+    <span class="nd">@get_logger</span>
+    <span class="k">def</span> <span class="nf">actualizar_treeview</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mitreview</span><span class="p">):</span>
+        <span class="n">records</span> <span class="o">=</span> <span class="n">mitreview</span><span class="o">.</span><span class="n">get_children</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">elements</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
+            <span class="n">mitreview</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">elements</span><span class="p">)</span>
+        
+        <span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM clientes ORDER BY id ASC&quot;</span>
+        <span class="n">conexion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">crear_base</span><span class="p">()</span>
+        <span class="n">micursor</span> <span class="o">=</span> <span class="n">conexion</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">datos</span> <span class="o">=</span> <span class="n">micursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+
+        <span class="n">resultado</span> <span class="o">=</span> <span class="n">datos</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">fila</span> <span class="ow">in</span> <span class="n">resultado</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">fila</span><span class="p">)</span>
+            <span class="n">mitreview</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span>
+                <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="mi">0</span><span class="p">,</span>
+                <span class="n">text</span><span class="o">=</span><span class="n">fila</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="n">values</span><span class="o">=</span><span class="p">(</span><span class="n">fila</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">fila</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">fila</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">fila</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">fila</span><span class="p">[</span><span class="mi">5</span><span class="p">]),</span>
+            <span class="p">)</span>
+
+
+    <span class="nd">@get_logger</span>
+    <span class="k">def</span> <span class="nf">baja</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tree</span><span class="p">):</span>
+        <span class="n">valor</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">selection</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">valor</span><span class="p">)</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">valor</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">])</span>
+        <span class="n">id_cli</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span>
+        
+        <span class="n">conexion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">crear_base</span><span class="p">()</span>
+        <span class="n">micursor</span> <span class="o">=</span> <span class="n">conexion</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="n">id_cli</span><span class="p">,)</span>
+        <span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM clientes WHERE ID=?&quot;</span>
+        <span class="n">micursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">conexion</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="n">tree</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">valor</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">quitar</span><span class="p">(</span><span class="n">valor</span><span class="p">,)</span>
+        
+    
+    <span class="nd">@get_logger</span>     
+    <span class="k">def</span> <span class="nf">modificar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cuilcuit</span><span class="p">,</span> <span class="n">razonsocial</span><span class="p">,</span> <span class="n">direccion</span><span class="p">,</span> <span class="n">telefono</span><span class="p">,</span> <span class="n">mail</span><span class="p">,</span> <span class="n">tree</span><span class="p">):</span>
+        <span class="n">valor</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">selection</span><span class="p">()</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">valor</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">])</span>
+        <span class="n">id_cli</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span>
+
+        <span class="n">conexion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">crear_base</span><span class="p">()</span>
+        <span class="n">micursor</span> <span class="o">=</span> <span class="n">conexion</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">cuilcuit</span><span class="p">,</span>
+            <span class="n">razonsocial</span><span class="p">,</span>
+            <span class="n">direccion</span><span class="p">,</span>
+            <span class="n">telefono</span><span class="p">,</span>
+            <span class="n">mail</span><span class="p">,</span>
+            <span class="n">id_cli</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;UPDATE clientes SET (cuilcuit, razonsocial, direccion, telefono, mail) = (?,?,?,?,?) WHERE id=?;&quot;</span>
+
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">cuilcuit</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span>
+            <span class="ow">or</span> <span class="n">razonsocial</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span>
+            <span class="ow">or</span> <span class="n">direccion</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span>
+            <span class="ow">or</span> <span class="n">telefono</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span>
+            <span class="ow">or</span> <span class="n">mail</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span>
+        <span class="p">):</span>
+        
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="s2">&quot;Por favor ingrese datos correctamente&quot;</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cadena</span> <span class="o">=</span> <span class="n">cuilcuit</span>
+            <span class="n">patron</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;\d[0-9]&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">patron</span><span class="p">,</span> <span class="n">cadena</span><span class="p">):</span>
+                <span class="n">micursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+                <span class="n">conexion</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+                <span class="n">conexion</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;Modificar Registro&quot;</span><span class="p">,</span> <span class="s2">&quot;Los datos fueron modificados correctamente&quot;</span><span class="p">)</span>
+
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;alta&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="s2">&quot;Por favor ingrese datos correctamente&quot;</span><span class="p">)</span>
+               
+        <span class="bp">self</span><span class="o">.</span><span class="n">actualizar_treeview</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span></div>
+        
+
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2022, Aires Pampeanos.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
